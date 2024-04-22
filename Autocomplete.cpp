@@ -18,7 +18,7 @@ void Autocomplete::insert(std::string key){
     current->setWordEnd(true);
 
 }
-std::vector<std::string> Autocomplete::getSuggestions(std::string& key){
+std::vector<std::string> Autocomplete::getSuggestions(std::string key){
     TrieNode * current= root;
     std::vector<std::string> res;
     for (int i = 0; i < key.length(); i++){
