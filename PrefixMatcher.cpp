@@ -15,9 +15,12 @@ int PrefixMatcher::selectRouter(std::string input){
             return routers[i].second;
         }
     }
+    delete root;
+    delete comp;
+    return -1;
 }
 void PrefixMatcher::insert(std::string address, int routerNumber){
-    routers.push_back(std::pair <std::string, int>(address, routerNumber));
+    routers.push_back(std::make_pair(address, routerNumber));
     sort(routers.begin(), routers.end());
     return;
 }
