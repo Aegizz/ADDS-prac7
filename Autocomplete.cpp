@@ -3,7 +3,7 @@
 Autocomplete::Autocomplete(TrieNode * _root){
     root=_root;
 }
-void Autocomplete::insert(std::string& key){
+void Autocomplete::insert(std::string key){
     TrieNode * current = root;
     for (int i = 0; i < key.length(); i++){
         if (current->getChild(key[i]-'a')==NULL){

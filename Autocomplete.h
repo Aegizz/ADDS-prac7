@@ -9,7 +9,7 @@ class Autocomplete{
         TrieNode* root;
     public:
         Autocomplete(TrieNode * _root);
-        void insert(std::string& key);
+        void insert(std::string key);
         std::vector<std::string> getSuggestions(std::string& key);
         void getCompletions(TrieNode* node, std::string prefix, std::vector<std::string>& res);
 
