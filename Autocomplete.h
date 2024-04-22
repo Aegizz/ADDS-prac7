@@ -8,6 +8,7 @@ class Autocomplete{
     protected:
         TrieNode* root;
     public:
+        Autocomplete();
         Autocomplete(TrieNode * _root);
         void insert(std::string key);
         std::vector<std::string> getSuggestions(std::string& key);

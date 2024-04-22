@@ -1,5 +1,7 @@
 #include "Autocomplete.h"
-
+Autocomplete::Autocomplete(){
+    root = new TrieNode();
+}
 Autocomplete::Autocomplete(TrieNode * _root){
     root=_root;
 }
