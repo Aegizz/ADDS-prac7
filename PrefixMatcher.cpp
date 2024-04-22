@@ -21,7 +21,7 @@ int PrefixMatcher::selectRouter(std::string input){
 }
 void PrefixMatcher::insert(std::string address, int routerNumber){
     routers.push_back(std::make_pair(address, routerNumber));
-    sort(routers.begin(), routers.end(),[](std::pair<std::string, int> const & lhs, std::pair<std::string, int> const & rhs){
+    sort(routers.begin(), routers.end(),[](const auto& lhs, const auto& rhs){
         return lhs.first.length() < rhs.first.length();
     });
     return;
