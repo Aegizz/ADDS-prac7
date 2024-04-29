@@ -1,29 +1,41 @@
 #include "PrefixMatcher.h"
 #include <utility>
 #include <algorithm>
-
+#include <memory>
 PrefixMatcher::PrefixMatcher(){
-
+    root = new TrieNode();
 }
 
 int PrefixMatcher::selectRouter(std::string input){
-    TrieNode * root =  new TrieNode();
-    comp = new Autocomplete(root);
-    comp->insert(input);
-    for (int i =routers.size() - 1; i > -1 ; i--){
-        if (!(comp->getSuggestions(routers[i].first)).empty()){
-            return routers[i].second;
+    TrieNode * current = root;
+
+    int size = input.length();
+    int router = -1;
+
+    for (int i =0; i < size && current->getChild(input[i]-'0'); i++){
+        current = current->getChild(input[i] - '0');
+        if (current == NULL){
+            return -1;
         }
     }
-    delete root;
-    delete comp;
-    return -1;
+    return current->getRouterNumber();
+
 }
 void PrefixMatcher::insert(std::string address, int routerNumber){
-    routers.push_back(std::make_pair(address, routerNumber));
-    sort(routers.begin(), routers.end(),[](const auto& lhs, const auto& rhs){
-        return lhs.first.length() < rhs.first.length();
-    });
+    TrieNode * current = root;
+    int size = address.length();
+    
+
+    for (int i = 0; i < size; i++){
+        if (current->getChild(address[i]-'0') == NULL){
+            current->setChild(address[i]-'0', new TrieNode());
+        }
+        current = current->getChild(address[i]-'0');
+    }
+    current->setWordEnd(true);
+    current->setRouterNumber(routerNumber);
+
+
     return;
 }
 

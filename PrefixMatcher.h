@@ -5,8 +5,7 @@
 #include "Autocomplete.h"
 class PrefixMatcher{
     protected:
-        std::vector<std::pair<std::string, int>> routers;
-        Autocomplete * comp;
+        TrieNode * root;
     public:
         PrefixMatcher();
         int selectRouter(std::string networkAddress);
